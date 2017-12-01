@@ -28,7 +28,6 @@
         <th>Address&emsp;</th>
         <th>Exams&emsp;</th>
         <th>Remove&emsp;</th>
-        <th>More</th>
       </tr>
       
       <c:forEach items="${patients}" var="patient">
@@ -39,7 +38,6 @@
           <td>${patient.address}&emsp;</td>
           <td><a href="patient-details?id=${patient.id}" method="post">List of exams</a></td>&emsp;
           <td><a href="#" onClick="remove(${patient.id})">Delete</a></td>&emsp;
-          <td><a href="patient-details?id=${patient.id}" method="post">Update</a></td>
         </tr>
       </c:forEach>
     </table>
