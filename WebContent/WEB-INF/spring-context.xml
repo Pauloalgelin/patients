@@ -13,7 +13,7 @@
 
     <mvc:default-servlet-handler/>
 
-    <context:component-scan base-package="project.exam" />
+    <context:component-scan base-package="project.exam, project.patient" />
     <mvc:annotation-driven />
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -21,7 +21,7 @@
       <property name="suffix" value=".jsp"/>
     </bean>
 
-		<context:component-scan base-package="project.exam" />
+		<context:component-scan base-package="project.exam, project.patient" />
 	  <bean id="mysqlDataSource" class="org.apache.commons.dbcp.BasicDataSource">
 	      <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 	      <property name="url" value="jdbc:mysql://localhost/pauloaraujo"/>

@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import project.exam.model.Exam;
 
@@ -15,31 +16,30 @@ public class JpaExamDao implements ExamDao {
   @PersistenceContext
   EntityManager manager;
 
-    public void add(Exam exam) {
-      manager.persist(exam);
-    }
+  public void add(Exam exam) {
+    manager.persist(exam);
+  }
 
-    public void update(Exam exam) {
-      manager.merge(exam);
-    }
+  public void update(Exam exam) {
+    manager.merge(exam);
+  }
 
-    @SuppressWarnings("unchecked")
-	public List<Exam> list() {
-      return manager.createQuery("select e from Exam e")
-        .getResultList();
-    }
+  @SuppressWarnings("unchecked")
+  public List<Exam> list() {
+    return manager.createQuery("select e from Exam e").getResultList();
+  }
 
-    public Exam idSearch(Long id) {
-      return manager.find(Exam.class, id);
-    }
+  public Exam idSearch(Long id) {
+    return manager.find(Exam.class, id);
+  }
 
-    public void remove(Exam exam) {
-      Exam examRemove = idSearch(exam.getId());
-      manager.remove(examRemove);
-    }
+  public void remove(Exam exam) {
+    Exam examRemove = idSearch(exam.getId());
+    manager.remove(examRemove);
+  }
 
-    public void finish(Long id) {
-      Exam exam = idSearch(id);
-      exam.setFinished(true);
-    }
+  public void finish(Long id) {
+    Exam exam = idSearch(id);
+    exam.setFinished(true);
+  }
 }

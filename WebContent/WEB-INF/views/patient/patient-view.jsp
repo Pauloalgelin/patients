@@ -4,12 +4,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
-    <script type="text/javascript" src="resources/js/jquery-3.2.1.js"></script>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>List of Exams</title>
-  </head>
+  <script type="text/javascript" src="resources/js/jquery-3.2.1.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Exams of "${patient.name}"</title>
+</head>
   <body>
-    <script type="text/javascript">
+  
+  <script type="text/javascript">
       function remove(id) {
         $.post("exam-remove", {'id' : id},
           function() {
@@ -19,10 +20,10 @@
       }
     </script>
     
-    <h2>Exams</h2>
+    <h2>Exams of ${patient.name}</h2>
+    
     <table>
       <tr>
-        <th>Name&emsp;</th>
         <th>Exam number&emsp;</th>
         <th>Description&emsp;</th>
         <th>Remove&emsp;</th>
@@ -31,7 +32,6 @@
       
       <c:forEach items="${exams}" var="exam">
         <tr id="exam_${exam.id}">
-          <td>${exam.patient}&emsp;</td>
           <td>${exam.id}&emsp;</td>
           <td>${exam.description}&emsp;</td>
           <td><a href="#" onClick="remove(${exam.id})">Delete</a></td>&emsp;
@@ -40,8 +40,10 @@
       </c:forEach>
     </table>
     </br>
-    <a href="welcome">back</a>&emsp;
+    
+    <a href="patient-list">back</a>&emsp;
     <a href="patient-form">new patient</a>&emsp;
     <a href="exam-form">new exam</a>
+    
   </body>
 </html>

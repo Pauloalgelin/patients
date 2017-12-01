@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import project.exam.dao.ExamDao;
 import project.exam.model.Exam;
+import project.patient.dao.PatientDao;
+import project.patient.model.Patient;
 
 @Controller
 @Transactional
@@ -20,18 +22,15 @@ public class PatientController {
   @Autowired
   ExamDao dao;
   
+  @Autowired
+  PatientDao daop;
+  
   // Welcome page
   @RequestMapping("/welcome")
   public String welcome() {
     return "patient/welcome";
   }
-  
-  // List of patients
-  @RequestMapping("/patient-list")
-  public String patientList() {
-	  return "patient/patient-list";
-  }
-  
+
   // Form to insert a new exam
   @RequestMapping("/exam-form")
   public String examForm() {
@@ -74,4 +73,44 @@ public class PatientController {
     model.addAttribute("exams", dao.list());
     return "exam/exam-list";
   }
+  
+  
+  // List of patients
+  @RequestMapping("/patient-list")
+  public String patientList(Model model) {
+	  model.addAttribute("patients", daop.list());
+	  return "patient/patient-list";
+  }
+
+  // Form to insert a new patient
+  @RequestMapping("/patient-form")
+  public String patientForm() {
+	  return "patient/patient-form";
+  }
+  
+  // Patient persistence
+  @RequestMapping("/patient-add")
+  public String patientAdd(@Valid Patient patient, BindingResult result) {
+    if(result.hasErrors()) {
+	  return "patient/patient-form";
+    }
+    daop.add(patient);
+    return "redirect:patient-list";
+  }  
+  
+  // Patient details and list
+  @RequestMapping("/patient-details")
+  public String patientDetails(Long id, Model model) {
+    Patient patient = daop.idSearch(id);
+    model.addAttribute("patient", patient);
+    model.addAttribute("exams", daop.patientExamsList(patient));
+    return "patient/patient-view";
+  }
+
+  // Exam removal from db
+  @RequestMapping("/patient-remove")
+  public void patientRemove(Long id, HttpServletResponse response) {
+    daop.remove(daop.idSearch(id));
+    response.setStatus(200);
+  }  
 }
