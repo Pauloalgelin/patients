@@ -11,7 +11,7 @@
     <form action="exam-add" method="post">
       Patient: <input type="text" name="patient"></br>
       Description: <br />
-      <textarea name="description" rows="5" cols="100"></textarea><br />
+      <textarea name="description" rows="3" cols="80"></textarea><br />
       <input type="submit" value="Add">
     </form>
     <a href="exam-list">back</a>&emsp;

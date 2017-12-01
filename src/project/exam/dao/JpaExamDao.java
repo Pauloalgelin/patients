@@ -1,4 +1,4 @@
-package project.dao;
+package project.exam.dao;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import project.exam.model.Exam;
 
 @Repository
-public class JpaExamDao implements ExamDao{
+public class JpaExamDao implements ExamDao {
   
   @PersistenceContext
   EntityManager manager;

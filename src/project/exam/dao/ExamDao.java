@@ -1,4 +1,4 @@
-package project.dao;
+package project.exam.dao;
 
 import java.util.List;
 

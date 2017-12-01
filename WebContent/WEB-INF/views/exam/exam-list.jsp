@@ -1,12 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
+    <script type="text/javascript" src="resources/js/jquery-3.2.1.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>List of Exams</title>
   </head>
   <body>
+    <script type="text/javascript">
+      function remove(id) {
+        $.post("exam-remove", {'id' : id},
+          function() {
+            $("#exam_"+id).hide();
+          }
+        )
+      }
+    </script>
+    
     <h2>Exams</h2>
     <table>
       <tr>
@@ -17,13 +29,15 @@
         <th>More</th>
       </tr>
       
-      <tr>
-        <th>Paulo</th>
-        <th>2345678</th>
-        <th>Shoulder physical examination</th>
-        <th>Delete</th>
-        <th>Details</th>
-      </tr>
+      <c:forEach items="${exams}" var="exam">
+        <tr id="exam_${exam.id}">
+          <td>${exam.patient}&emsp;</td>
+          <td>${exam.id}&emsp;</td>
+          <td>${exam.description}&emsp;</td>
+          <td><a href="#" onClick="remove(${exam.id})">Delete</a></td>&emsp;
+          <td><a href="exam-details?id=${exam.id}" method="post">Update</a></td>
+        </tr>
+      </c:forEach>
     </table>
     </br>
     <a href="welcome">back</a>&emsp;

@@ -4,6 +4,7 @@
              version="2.0">
 
 <persistence-unit name="exams">
+  
    <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
    <class>project.exam.model.Exam</class>
@@ -12,6 +13,7 @@
 
     <property name="hibernate.dialect"
         value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+
     <property name="hibernate.show_sql" value="true" />
     <property name="hibernate.format_sql" value="true" />
     <property name="hibernate.hbm2ddl.auto" value="update" />
