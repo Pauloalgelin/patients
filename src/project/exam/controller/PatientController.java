@@ -26,7 +26,7 @@ public class PatientController {
   PatientDao daop;
   
   // Welcome page
-  @RequestMapping("/welcome")
+  @RequestMapping(value={"","/","/welcome"})
   public String welcome() {
     return "patient/welcome";
   }

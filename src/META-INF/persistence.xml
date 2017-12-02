@@ -6,7 +6,7 @@
 <persistence-unit name="exams">
    <provider>org.hibernate.ejb.HibernatePersistence</provider>
    <class>project.exam.model.Exam</class>
-   <class>project.exam.model.Patient</class>
+   <class>project.patient.model.Patient</class>
    <properties>
     <property name="hibernate.dialect"
         value="org.hibernate.dialect.MySQL5InnoDBDialect" />

@@ -3,8 +3,9 @@ package project.exam.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
-import com.sun.istack.internal.NotNull;
+
 
 
 @Entity
